@@ -19,19 +19,59 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Для DI Контейнера -->
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.10.2</version>
+		</dependency>
+
+		<!-- Для аннотаций геттеров и сеттеров -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+		<!--Конец-->
+
+		<!--		&lt;!&ndash;Подключение Mysql&ndash;&gt;-->
+
+		<!--		&lt;!&ndash;1. Библиотека jpa работает только с Spring Boot необходима для подключения к java spring boot баз данных&ndash;&gt;-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.springframework.boot</groupId>-->
+		<!--			<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+		<!--		</dependency>-->
+
+		<!--		&lt;!&ndash;2. Коннектор, который позволяет встроить mysql внутрь самого проекта&ndash;&gt;-->
+		<!--		<dependency>-->
+		<!--			<groupId>mysql</groupId>-->
+		<!--			<artifactId>mysql-connector-java</artifactId>-->
+		<!--			<scope>runtime</scope>-->
+		<!--		</dependency>-->
+
+		<!--		&lt;!&ndash;Конец подключения mysql&ndash;&gt;-->
+
+
+
 	</dependencies>
 
 	<build>
@@ -39,6 +79,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
 			</plugin>
 		</plugins>
 	</build>
