@@ -28,7 +28,10 @@ public class BeanFactory {
 
     @SneakyThrows
     public <T> T getBean(Class<T> clazz){
+        //Какой-то класс расширин от класса T
         Class<? extends T> implementationClass = clazz;
+
+        //Если implementationClass является интерфейсом
         if(implementationClass.isInterface()){
             implementationClass = beanConfigurator.getImplementationClass(implementationClass);
         }
