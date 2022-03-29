@@ -186,5 +186,80 @@ class Mother {
 
 ### 6. Паттерны проектирования
 
+Все паттерны можно посмотреть здесь
+https://refactoring.guru/ru/design-patterns/builder/java/example#example-0
+
+---
+#### Фабрычный метод (Factory method) 
+
+***Фабрычный метод(Factory method)*** - фабричный метод, это класс который вначале получает конфигурацию в виде
+Строка -> класс
+Название интерфейса -> класс
+
+И с помощью метода getBean возвращает нужный объект
+С помощью аннотации spring также может возвращать нужный объект
+
+***Плюсы:***
+- можно создавать несколько типов конструкторов с разными входными параметрами
+- можно создать объект производного типа и при этом скрыть это внутри фабрики
+- во время создания объекта можно производить какие-то действия, например регистрацию его в списке объектов
+- можно сделать метод создания ассинхронным а через new не можем
+
+***Пример простейшей фабрики***
+
+```java
+
+// Создаем интерфейс транспорт
+interface Transport {
+    void move();
+}
+
+// Первая реализация транспорта
+class Car implements Transport{
+    @Override
+    public void move() {
+        System.out.println("I'm going by car");
+    }
+}
+
+// Вторая реализация транспорта
+class Airplane implements Transport{
+    @Override
+    public void move() {
+        System.out.println("I'm flying by plane");
+    }
+}
+
+// Фабрика, которая возвращает необходимую реализацию, в этой фабрике можно поменять логику вывода объектов, обычно это делается с помощью загруженной в нее конфигурации или анализа кода с помощью аннотаций как в спринг @inject например @Autowired и @Qualifier("Airplane")..
+class Factory{
+    //Если мы запросили класс самолет то вернем его, если нет то во всех других случаях вернем объект машина
+    public Transport getObject(String className){
+        if(className.equals(Airplane.class.toString())){
+            return new Airplane();
+        }else{
+            return new Car();
+        }
+    }
+}
+
+```
+
+Более сложную фабрику разработанную мной можно посмотреть по ссылке
+https://github.com/exesellentmen/Pat/tree/master/src/main/java/com/pavel/patterns/services/dependency/injection/container
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
